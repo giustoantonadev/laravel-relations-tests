@@ -25,11 +25,16 @@ class CourseFactory extends Factory
     public function definition(): array
     {
         $faker = app(Faker::class);
+        // Use picsum.photos seeded images for consistent placeholder thumbnails
+        $seed = $faker->unique()->numberBetween(1, 1000);
+        $imageUrl = "https://picsum.photos/seed/{$seed}/800/450";
+
         return [
             'name' => $faker->sentence(3),
             'description' => $faker->paragraph(),
             'duration' => $faker->numberBetween(1, 52),
             'price' => $faker->randomFloat(2, 0, 500),
+            'image' => $imageUrl,
         ];
     }
 }

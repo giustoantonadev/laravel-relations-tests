@@ -24,6 +24,11 @@
         <tbody>
             @foreach($courses as $course)
             <tr>
+                <td style="width:120px;">
+                    @if($course->image)
+                    <img src="{{ $course->image }}" alt="{{ $course->name }}" class="img-fluid rounded" style="max-height:60px;">
+                    @endif
+                </td>
                 <td>{{ $course->name }}</td>
                 <td>{{ $course->duration }}</td>
                 <td>{{ number_format($course->price,2) }}</td>

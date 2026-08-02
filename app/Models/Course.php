@@ -14,6 +14,7 @@ class Course extends Model
         'description',
         'duration',
         'price',
+        'image',
     ];
 
     public function categories()

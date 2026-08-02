@@ -23,13 +23,11 @@
     <div id="app">
 
 
-        <nav class="navbar navbar-expand-md bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark shadow-sm">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-                    <div class="logo_laravel">
-
-                    </div>
-                    {{-- config('app.name', 'Laravel') --}}
+                    <div class="logo_laravel"></div>
+                    <span class="ms-2 fw-bold">{{ config('app.name', 'Laravel') }}</span>
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -50,7 +48,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
                         <li class="nav-item">
@@ -67,18 +65,20 @@
                                 {{ Auth::user()->name }}
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ url('dashboard') }}">{{__('Dashboard')}}</a>
-                                <a class="dropdown-item" href="{{ url('profile') }}">{{__('Profile')}}</a>
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{{ url('dashboard') }}">{{__('Dashboard')}}</a></li>
+                                <li><a class="dropdown-item" href="{{ url('profile') }}">{{__('Profile')}}</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+                                </li>
+                            </ul>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>
                         </li>
                         @endguest
                     </ul>
@@ -86,10 +86,49 @@
             </div>
         </nav>
 
+        @if(session('success') || session('error'))
+        <div class="container mt-3">
+            @if(session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
+            @if(session('error'))
+            <div class="alert alert-danger">{{ session('error') }}</div>
+            @endif
+        </div>
+        @endif
+
         <main class="py-4 container">
             @yield('content')
         </main>
     </div>
+    <footer class="site-footer mt-5">
+        <div class="container py-4">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-3 mb-md-0 d-flex align-items-center">
+                    <div class="logo_laravel"></div>
+                    <div class="ms-3">
+                        <div class="fw-bold">{{ config('app.name', 'Laravel') }}</div>
+                        <div class="small text-muted">Built with ❤️ · {{ date('Y') }}</div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-3 mb-md-0">
+                    <h6 class="mb-2">Links</h6>
+                    <ul class="list-unstyled mb-0">
+                        <li><a href="{{ route('courses.index') }}" class="footer-link">Courses</a></li>
+                        <li><a href="{{ url('/') }}" class="footer-link">Home</a></li>
+                        @auth
+                        <li><a href="{{ route('admin.dashboard') }}" class="footer-link">Admin</a></li>
+                        @endauth
+                    </ul>
+                </div>
+
+                <div class="col-md-3 text-md-end">
+                    <small class="text-muted">© {{ date('Y') }} {{ config('app.name', 'Laravel') }}. All rights reserved.</small>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>

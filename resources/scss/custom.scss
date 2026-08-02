@@ -13,14 +13,51 @@
     font-size: 14px;
 }
 
+.logo_laravel {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);
+    color: #fff;
+    font-weight: 700;
+    font-family: Nunito, sans-serif;
+    font-size: 14px;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.18);
+}
+
 .logo_laravel::before {
     content: 'LR';
 }
 
-/* Small spacing tweaks */
+/* Page background */
+body {
+    background: linear-gradient(180deg, #071126 0%, #081827 45%, #061226 100%);
+    color: #e6f2ff;
+    min-height: 100vh;
+}
+
+/* Navbar */
 .navbar {
-    padding-top: .4rem;
-    padding-bottom: .4rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.nav-link {
+    color: rgba(235, 245, 255, 0.9) !important;
+}
+
+/* Cards: glassmorphism */
+.card {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(0, 0, 0, 0.06));
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
+    color: #e6f2ff;
 }
 
 .card h5 {
@@ -28,13 +65,76 @@
     font-weight: 600;
 }
 
-/* Form spacing */
-.form-label {
-    font-weight: 600;
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(90deg, #7c3aed, #2563eb);
+    border: none;
+    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.2);
 }
 
-/* Table compact */
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: #e6f2ff;
+}
+
+/* Forms */
+.form-control,
+.form-select,
+textarea {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    color: #e6f2ff;
+}
+
+.form-label {
+    font-weight: 600;
+    color: rgba(235, 245, 255, 0.9);
+}
+
+/* Tables */
+.table {
+    color: #e6f2ff;
+}
+
 .table td,
 .table th {
     vertical-align: middle;
+}
+
+/* Misc spacing */
+.container,
+.container-fluid {
+    padding-top: 1.2rem;
+}
+
+/* Small responsive tweak */
+@media (max-width: 576px) {
+    .logo_laravel {
+        width: 32px;
+        height: 32px;
+        font-size: 12px;
+    }
+}
+
+/* Footer styles */
+.site-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(0, 0, 0, 0.03));
+    color: rgba(230, 242, 255, 0.85);
+}
+
+.site-footer .footer-link {
+    color: rgba(230, 242, 255, 0.85);
+    text-decoration: none;
+}
+
+.site-footer .footer-link:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.site-footer h6 {
+    color: rgba(230, 242, 255, 0.95);
+    font-weight: 700;
 }
